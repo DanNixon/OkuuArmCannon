@@ -1,4 +1,5 @@
 material_thickness = 3;
+material_tolerance = 0.1;
 
 arm = 100;
 
