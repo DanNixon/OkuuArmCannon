@@ -1,34 +1,49 @@
 use <arm_cannon.scad>;
 include <config.scad>;
 
-module InnerSectionAssembly(position, c="red")
+module InnerSectionAssembly(config, col="red")
 {
-  translate([0, 0, position-(material_thickness/2)])
-    color(c)
+  translate([0, 0, config[1]-(material_thickness/2)])
+  {
+    color(col)
+    {
       linear_extrude(height=material_thickness)
-        children();
+      {
+        if(config[0] == "cutout")
+          InnerSection(config[2]);
+        if(config[0] == "aperture")
+          InnerApertureSection();
+      }
+    }
+  }
 }
 
-InnerSectionAssembly(inner_brace_positions[0])
-  InnerSection(arm);
+for(i = [0:number_sections-1])
+{
+  translate([0, 0, i*section_length])
+  {
+    RotateAroundHex(width, linear_offset=material_thickness)
+      rotate([90, 0, 0])
+        color("blue")
+          linear_extrude(height=material_thickness)
+            SidePanel();
+  }
+}
 
-InnerSectionAssembly(inner_brace_positions[1])
-  InnerSection(arm);
+for(j = inner_braces)
+  InnerSectionAssembly(j);
 
-InnerSectionAssembly(inner_brace_positions[2])
-  InnerApertureSection();
-
-InnerSectionAssembly(inner_brace_positions[2] + aperture_front_length + material_thickness, "green")
-  FrontApertureSection();
-
-translate([0, 0, inner_brace_positions[2] + (aperture_front_length+material_thickness)/2])
+translate([0, 0, inner_braces[len(inner_braces)-1][1] + material_thickness/2])
+{
+  translate([0, 0, (aperture_front_length/2)])
   RotateAroundHex(0, linear_offset=(aperture_mount_diameter+material_thickness)/2)
     rotate([90, 0, 0])
-      linear_extrude(height=material_thickness)
-        AperturePanel();
+      color("orange")
+        linear_extrude(height=material_thickness)
+          AperturePanel();
 
-RotateAroundHex(width, linear_offset=material_thickness)
-  rotate([90, 0, 0])
-    color("blue")
+  translate([0, 0, aperture_front_length])
+    color("green")
       linear_extrude(height=material_thickness)
-        SidePanel();
+        FrontApertureSection();
+}

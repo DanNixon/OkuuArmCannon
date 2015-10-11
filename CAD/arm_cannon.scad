@@ -112,15 +112,15 @@ module AperturePanel()
 
 module SidePanel()
 {
-  translate([0, length/2, -material_thickness/2])
+  translate([0, section_length/2, -material_thickness/2])
   {
 		difference()
 		{
-			square([width/2, length], center=true);
+			square([width/2, section_length], center=true);
 
-			for(i = inner_brace_positions)
+			for(i = inner_braces)
 			{
-				translate([0, i-(length/2), 0])
+				translate([0, i[1]-(section_length/2), 0])
 				{
 					circle(r=screw_hole_radius);
 					translate([assembly_tab_offset/2, 0, 0])

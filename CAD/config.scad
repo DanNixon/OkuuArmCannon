@@ -12,9 +12,20 @@ aperture_tab_width = 5;
 aperture_mount_diameter = 50;
 
 width = 150;
-length = 300;
+section_length = 300;
+number_sections = 3;
 
 assembly_tab_offset = 40;
 assembly_tab_width = 10;
 
-inner_brace_positions = [10, 150, 290];
+inner_braces = [
+  ["cutout", 10,  arm],
+  ["cutout", 150, arm],
+  ["cutout", 290, arm],
+  ["cutout", 310, arm],
+  ["cutout", 450, arm],
+  ["cutout", 590, arm],
+  ["cutout", 610, arm],
+  ["cutout", 750, arm],
+  ["aperture", 890]
+];
