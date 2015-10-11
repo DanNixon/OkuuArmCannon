@@ -12,10 +12,10 @@ module Hexagon(w)
   }
 }
 
-module RotateAroundHex(width, linear_offset=0, angle_offset=0, axis="x")
+module RotateAroundHex(width, linear_offset=0, angle_offset=0, axis="x", step=1)
 {
   d = ((width / 2) * sin(60)) + linear_offset;
-  for(i = [0:5])
+  for(i = [0:step:5])
     rotate([0, 0, (60 * i) + angle_offset])
       translate([0, d, 0])
         children();
@@ -30,7 +30,10 @@ module InnerSection(hole_diameter=0)
     Hexagon(width);
 
     if(hole_diameter > 0)
-      circle(r=hole_diameter/2);
+      circle(d=hole_diameter);
+
+    RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
+      circle(d=through_bolt_diameter);
 
     RotateAroundHex(width, linear_offset=0.01)
       rotate([0, 0, 180])

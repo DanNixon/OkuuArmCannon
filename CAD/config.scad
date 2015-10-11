@@ -18,6 +18,10 @@ number_sections = 3;
 assembly_tab_offset = 40;
 assembly_tab_width = 10;
 
+through_bolt_diameter = 4;
+through_bolt_hole_radius = 60;
+through_bolt_assembly_offset = 5;
+
 inner_braces = [
   ["cutout", 10,  arm],
   ["cutout", 150, arm],

@@ -33,6 +33,14 @@ for(i = [0:number_sections-1])
 for(j = inner_braces)
   InnerSectionAssembly(j);
 
+through_bolt_length = (2 * through_bolt_assembly_offset) + (inner_braces[len(inner_braces)-1][1] - inner_braces[0][1]);
+echo(str("Bolt Length: ", through_bolt_length, "mm"));
+
+translate([0, 0, inner_braces[0][1]-through_bolt_assembly_offset])
+  RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
+    color("silver")
+      cylinder(d=through_bolt_diameter, h=through_bolt_length);
+
 translate([0, 0, inner_braces[len(inner_braces)-1][1] + material_thickness/2])
 {
   translate([0, 0, (aperture_front_length/2)])
