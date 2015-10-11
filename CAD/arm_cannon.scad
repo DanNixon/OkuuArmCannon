@@ -89,22 +89,24 @@ module AperturePanel()
   {
     square([(aperture_mount_diameter+material_thickness)/2, aperture_front_length], center=true);
 
-    translate([0, -offset, 0])
+    translate([0, -offset-0.02, 0])
       PanelNutFixing_M3();
-    translate([0, offset, 0])
+    translate([0, offset+0.02, 0])
       rotate([180, 0, 0])
         PanelNutFixing_M3();
   }
 
-  translate([aperture_tab_offset/2, offset+(material_thickness/2), 0])
-    #square([aperture_tab_width, material_thickness], center=true);
-  translate([-aperture_tab_offset/2, offset+(material_thickness/2), 0])
-    #square([aperture_tab_width, material_thickness], center=true);
+  tab_offset = offset + (material_thickness / 2);
 
-  translate([aperture_tab_offset/2, -offset, 0])
-    #square([aperture_tab_width, material_thickness], center=true);
-  translate([-aperture_tab_offset/2, -offset, 0])
-    #square([aperture_tab_width, material_thickness], center=true);
+  translate([aperture_tab_offset/2, tab_offset, 0])
+    square([aperture_tab_width, material_thickness], center=true);
+  translate([-aperture_tab_offset/2, tab_offset, 0])
+    square([aperture_tab_width, material_thickness], center=true);
+
+  translate([aperture_tab_offset/2, -tab_offset, 0])
+    square([aperture_tab_width, material_thickness], center=true);
+  translate([-aperture_tab_offset/2, -tab_offset, 0])
+    square([aperture_tab_width, material_thickness], center=true);
 
 }
 

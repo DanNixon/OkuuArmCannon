@@ -18,10 +18,10 @@ InnerSectionAssembly(inner_brace_positions[1])
 InnerSectionAssembly(inner_brace_positions[2])
   InnerApertureSection();
 
-InnerSectionAssembly(inner_brace_positions[2] + aperture_front_length + material_thickness/2, "green")
+InnerSectionAssembly(inner_brace_positions[2] + aperture_front_length + material_thickness, "green")
   FrontApertureSection();
 
-translate([0, 0, inner_brace_positions[2] + aperture_front_length/2])
+translate([0, 0, inner_brace_positions[2] + (aperture_front_length+material_thickness)/2])
   RotateAroundHex(0, linear_offset=(aperture_mount_diameter+material_thickness)/2)
     rotate([90, 0, 0])
       linear_extrude(height=material_thickness)
