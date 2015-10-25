@@ -55,3 +55,8 @@ translate([0, 0, inner_braces[len(inner_braces)-1][1] + material_thickness/2])
       linear_extrude(height=material_thickness)
         FrontApertureSection();
 }
+
+translate([0, 0, 800])
+  color("orange")
+    linear_extrude(height=material_thickness)
+      InnerLaserMount();

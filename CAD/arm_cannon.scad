@@ -135,3 +135,53 @@ module SidePanel()
 		}
   }
 }
+
+module InnerLaserMount()
+{
+  laser_offset = 10;
+  laser_diameter_red = 14;
+  laser_diameter_green = 14.2;
+  laser_diameter_blue = 14;
+
+  difference()
+  {
+    hull()
+    {
+      RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
+        circle(d=15);
+    }
+
+    RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
+      circle(d=through_bolt_diameter);
+
+    // Red laser
+    translate([laser_offset, 0, 0])
+    {
+      circle(d=laser_diameter_red);
+      translate([10, 0, 0])
+        text("RED", valign="center", size=5);
+    }
+
+    // Green laser
+    rotate([0, 0, 120])
+    {
+      translate([laser_offset, 0, 0])
+      {
+        circle(d=laser_diameter_green);
+        translate([10, 0, 0])
+          text("GREEN", valign="center", size=5);
+      }
+    }
+
+    // Blue laser
+    rotate([0, 0, 240])
+    {
+      translate([laser_offset, 0, 0])
+      {
+        circle(d=laser_diameter_blue);
+        translate([10, 0, 0])
+          text("BLUE", valign="center", size=5);
+      }
+    }
+  }
+}
