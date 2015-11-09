@@ -18,15 +18,39 @@ module InnerSectionAssembly(config, col="red")
   }
 }
 
-for(i = [0:number_sections-1])
+for(i = sections)
 {
-  translate([0, 0, i*section_length])
+  translate([0, 0, i[0]*section_length])
   {
     RotateAroundHex(width, linear_offset=material_thickness)
+    {
       rotate([90, 0, 0])
+      {
         color("blue")
+        {
           linear_extrude(height=material_thickness)
-            SidePanel();
+          {
+            if(i[1] == "solid")
+              SidePanel();
+            if(i[1] == "cutout")
+              SidePanel()
+                SidePanelCutouts();
+          }
+        }
+
+        if(i[1] == "cutout")
+        {
+          translate([0, (section_length/4), material_thickness])
+            color("cyan", 0.5)
+              linear_extrude(height=material_thickness)
+                SidePanelInsert();
+          translate([0, (section_length*3/4), material_thickness])
+            color("cyan", 0.5)
+              linear_extrude(height=material_thickness)
+                SidePanelInsert();
+        }
+      }
+    }
   }
 }
 

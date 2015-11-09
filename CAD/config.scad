@@ -13,6 +13,13 @@ aperture_mount_diameter = 50;
 
 width = 150;
 section_length = 300;
+
+sections = [
+  [0, "solid"],
+  [1, "cutout"],
+  [2, "cutout"]
+];
+
 number_sections = 3;
 
 assembly_tab_offset = 40;
@@ -33,3 +40,6 @@ inner_braces = [
   ["cutout", 750, arm],
   ["aperture", 890]
 ];
+
+side_cutout_x = 40;
+side_cutout_y = 100;

@@ -132,7 +132,67 @@ module SidePanel()
 						square([assembly_tab_width+material_tolerance, material_thickness+material_tolerance], center=true);
 				}
 			}
+
+      children();
 		}
+  }
+}
+
+module SidePanelCutouts()
+{
+  m = 5;
+
+  translate([0, (section_length/4)])
+  {
+    minkowski()
+    {
+      square([side_cutout_x-m, side_cutout_y-m], center=true);
+      circle(r=m);
+    }
+    SidePanelCutoutMountingHoles();
+  }
+
+  translate([0, -(section_length/4)])
+  {
+    minkowski()
+    {
+      square([side_cutout_x-m, side_cutout_y-m], center=true);
+      circle(r=m);
+    }
+    SidePanelCutoutMountingHoles();
+  }
+}
+
+module SidePanelInsert(d = 15)
+{
+  x = side_cutout_x + d;
+  y = side_cutout_y + d;
+
+  difference()
+  {
+    square([x, y], center=true);
+    SidePanelCutoutMountingHoles();
+  }
+}
+
+module SidePanelCutoutMountingHoles(d=5)
+{
+  x_diff = (side_cutout_x / 2) + d;
+  y_diff = (side_cutout_y / 2) + d;
+
+  translate([x_diff, 0])
+  {
+    translate([0, y_diff])
+      circle(r=screw_hole_radius);
+    translate([0, -y_diff])
+      circle(r=screw_hole_radius);
+  }
+  translate([-x_diff, 0])
+  {
+    translate([0, y_diff])
+      circle(r=screw_hole_radius);
+    translate([0, -y_diff])
+      circle(r=screw_hole_radius);
   }
 }
 
