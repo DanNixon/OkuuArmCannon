@@ -34,6 +34,8 @@ module InnerSection(hole_diameter=0)
 
     RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
       circle(d=through_bolt_diameter);
+    RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=90, step=2)
+      circle(d=mount_bolt_hole_radius);
 
     RotateAroundHex(width, linear_offset=0.01)
       rotate([0, 0, 180])
@@ -207,23 +209,26 @@ module InnerLaserMount()
   {
     hull()
     {
-      RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
+      RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=90, step=2)
         circle(d=15);
     }
 
-    RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=30, step=2)
-      circle(d=through_bolt_diameter);
+    RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=90, step=2)
+      circle(d=mount_bolt_hole_radius);
 
     // Red laser
-    translate([laser_offset, 0, 0])
+    rotate([0, 0, 60])
     {
-      circle(d=laser_diameter_red);
-      translate([10, 0, 0])
-        text("RED", valign="center", size=5);
+      translate([laser_offset, 0, 0])
+      {
+        circle(d=laser_diameter_red);
+        translate([10, 0, 0])
+          text("RED", valign="center", size=5);
+      }
     }
 
     // Green laser
-    rotate([0, 0, 120])
+    rotate([0, 0, 180])
     {
       translate([laser_offset, 0, 0])
       {
@@ -234,7 +239,7 @@ module InnerLaserMount()
     }
 
     // Blue laser
-    rotate([0, 0, 240])
+    rotate([0, 0, 300])
     {
       translate([laser_offset, 0, 0])
       {
