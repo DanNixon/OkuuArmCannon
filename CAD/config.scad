@@ -44,3 +44,8 @@ inner_braces = [
 
 side_cutout_x = 40;
 side_cutout_y = 100;
+
+laser_offset = 10;
+laser_diameter_red = 14;
+laser_diameter_green = 14.2;
+laser_diameter_blue = 14;
