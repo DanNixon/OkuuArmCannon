@@ -198,13 +198,8 @@ module SidePanelCutoutMountingHoles(d=5)
   }
 }
 
-module InnerLaserMount()
+module InnerMount()
 {
-  laser_offset = 10;
-  laser_diameter_red = 14;
-  laser_diameter_green = 14.2;
-  laser_diameter_blue = 14;
-
   difference()
   {
     hull()
@@ -216,6 +211,14 @@ module InnerLaserMount()
     RotateAroundHex(0, linear_offset=through_bolt_hole_radius, angle_offset=90, step=2)
       circle(d=mount_bolt_hole_radius);
 
+    children();
+  }
+}
+
+module InnerLaserMount()
+{
+  InnerMount()
+  {
     // Red laser
     rotate([0, 0, 60])
     {
@@ -248,5 +251,16 @@ module InnerLaserMount()
           text("BLUE", valign="center", size=5);
       }
     }
+  }
+}
+
+module InnerElectronicsMount()
+{
+  InnerMount()
+  {
+    translate([0, 15])
+      square([material_thickness + material_tolerance, 10 + material_tolerance], center=true);
+    translate([0, -15])
+      square([material_thickness + material_tolerance, 10 + material_tolerance], center=true);
   }
 }
