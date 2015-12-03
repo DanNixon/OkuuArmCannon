@@ -66,18 +66,29 @@ void OkuuArmCannon::setLaser(Colour colour, bool state)
 
 void OkuuArmCannon::setApertureLights(uint8_t pixel, uint8_t r, uint8_t g, uint8_t b)
 {
-  setApertureLights(pixel, m_aperturePixels->Color(r, g, b));
+  setApertureLights(pixel, Adafruit_NeoPixel::Color(r, g, b));
 }
 
 void OkuuArmCannon::setApertureLights(uint8_t pixel, uint32_t colour)
 {
-  m_aperturePixels->setPixelColor(pixel, colour);
-  m_aperturePixels->show();
+  if (pixel == ALL_PIXELS)
+  {
+    for (uint8_t i = 0; i < NUM_APERTURE_PIXELS; i++)
+    {
+      m_aperturePixels->setPixelColor(i, colour);
+      m_aperturePixels->show();
+    }
+  }
+  else
+  {
+    m_aperturePixels->setPixelColor(pixel, colour);
+    m_aperturePixels->show();
+  }
 }
 
 void OkuuArmCannon::setMidSectionLights(uint8_t section, uint8_t r, uint8_t g, uint8_t b)
 {
-  setMidSectionLights(section, m_midPixels->Color(r, g, b));
+  setMidSectionLights(section, Adafruit_NeoPixel::Color(r, g, b));
 }
 
 void OkuuArmCannon::setMidSectionLights(uint8_t section, uint32_t colour)

@@ -27,7 +27,7 @@ void setup()
   cannon.setMidSectionLights(3, 0, 0, 255);
   delay(1000);
 
-  cannon.setApertureLights(0, 255, 255, 255);
+  cannon.setApertureLights(OkuuArmCannon::ALL_PIXELS, 255, 255, 255);
 }
 
 void loop()

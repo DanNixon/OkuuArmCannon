@@ -34,6 +34,7 @@ class OkuuArmCannon
     static const size_t NUM_MID_SECTION_STRIPS = 3;
     static const size_t NUM_MID_SECTION_PIXELS = NUM_MID_SECTIONS * NUM_MID_SECTION_STRIPS;
     static const size_t NUM_APERTURE_PIXELS = 24;
+    static const uint8_t ALL_PIXELS = -1;
 
     OkuuArmCannon(const PinConfig &pinConfig);
     ~OkuuArmCannon();
