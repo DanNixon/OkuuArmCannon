@@ -18,12 +18,12 @@ void loop()
 {
   uint16_t i, j;
 
-  for(j = 0; j < 256; j++)
+  for (j = 0; j < 256; j++)
   {
-    for(i = 0; i < cannon.NUM_MID_SECTIONS; i++)
-      cannon.setMidSectionLights(i, wheel(((20*i)+j) & 255));
-    for(i = 0; i < cannon.NUM_APERTURE_PIXELS; i++)
-      cannon.setApertureLights(i, wheel(((2*i)+j) & 255));
+    for (i = 0; i < cannon.NUM_MID_SECTIONS; i++)
+      cannon.setMidSectionLights(i, wheel(((20 * i) + j) & 255));
+    for (i = 0; i < cannon.NUM_APERTURE_PIXELS; i++)
+      cannon.setApertureLights(i, wheel(((2 * i) + j) & 255));
 
     delay(50);
   }
@@ -33,10 +33,10 @@ uint32_t wheel(byte pos)
 {
   pos = 255 - pos;
 
-  if(pos < 85)
+  if (pos < 85)
     return Adafruit_NeoPixel::Color(255 - pos * 3, 0, pos * 3);
 
-  if(pos < 170)
+  if (pos < 170)
   {
     pos -= 85;
     return Adafruit_NeoPixel::Color(0, pos * 3, 255 - pos * 3);
