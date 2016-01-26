@@ -1,4 +1,4 @@
-use <CAD-Library/panel_nut_fixing.scad>;
+use <Suwako/PanelNutFixing.scad>;
 include <config.scad>;
 
 module Hexagon(w)
