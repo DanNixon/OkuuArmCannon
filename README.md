@@ -1,4 +1,4 @@
 Okuu's Arm Cannon
 =================
 
-CAD requires [Suwako](https://github.com/DanNixon/Suwako) SCAD library.
+CAD requires [my SCAD library](https://github.com/DanNixon/SCAD_Lib).

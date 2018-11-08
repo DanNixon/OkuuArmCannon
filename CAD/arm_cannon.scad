@@ -1,4 +1,4 @@
-use <Suwako/PanelNutFixing.scad>;
+use <SCAD_Lib/PanelNutFixing.scad>;
 include <config.scad>;
 
 module Hexagon(w)
